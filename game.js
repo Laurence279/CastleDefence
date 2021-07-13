@@ -214,6 +214,11 @@ if (attackerScore > defenderScore)
   {
     flashAttackedZone(buttonArray[zone],"lightcoral");
     buttonArray[zone].textContent = parseInt(buttonArray[zone].textContent) - 1;
+    if(parseInt(buttonArray[zone].textContent) <= 0)
+    {
+      buttonArray[zone].textContent = "0";
+      $(buttonArray[zone]).animate({opacity: 0.2});
+    }
   }
 
 }
@@ -258,6 +263,7 @@ function gameOver()
 {
         $("#castleHealth").text("Castle Destroyed!");
         $("#nextRound").prop("disabled",false);
+        $("#castle").animate({opacity:0.2});
         onNextRound("Restart",refreshGame);
 
 }
@@ -290,6 +296,7 @@ function refreshGame()
     $(buttonArray[i]).prop("disabled",false);
   }
     $("#boss").hide();
+    $("#castle").animate({opacity:1});
   castleHealth = 100;
   score = 0;
   updateHud();
