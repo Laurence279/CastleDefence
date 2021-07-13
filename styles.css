@@ -1,0 +1,127 @@
+body {
+  background-color: #897853;
+  color: #F3F0D7;
+  font-family: 'EB Garamond', serif;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.startBtn {
+  padding: 2%;
+
+}
+
+button {
+  font-family: 'EB Garamond', serif;
+  color: #161616;
+}
+
+.startBtn button {
+
+  padding:1% 4%;
+  font-size: 2rem;
+  margin: auto;
+  margin-top: 5%;
+  display:block;
+}
+
+#title {
+ font-family: 'Cinzel Decorative', cursive;
+  text-align: center;
+  margin: 5%;
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+#castleHealth{
+  float:left;
+
+  margin: auto auto auto 5%;
+}
+
+#score{
+  float: right;
+
+  margin: auto 5% auto auto;
+}
+
+.gameTable button {
+  width: 150px;
+  height: 150px;
+  font-size: 6rem;
+  border-width: 5px;
+  margin: 5px;
+}
+
+#level-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3rem;
+  margin:  5%;
+  color: #FEF2BF;
+}
+
+#boss{
+  color: darkred;
+  margin: 10% 0 0 0;
+  font-size: 3rem;
+  text-align: center;
+  display:none;
+}
+
+#reinforcements {
+  display: none;
+  text-align: center;
+}
+
+.gameBorder {
+  text-align: center;
+  padding: 5%;
+}
+
+.gameTable {
+  display: inline;
+}
+
+.container {
+  display: block;
+  width: 50%;
+  margin: auto;
+
+}
+
+.btn {
+  margin: 25px;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  border: 10px solid black;
+  border-radius: 20%;
+}
+
+.game-over {
+  background-color: red;
+  opacity: 0.8;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: grey;
+}
