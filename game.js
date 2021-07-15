@@ -302,7 +302,7 @@ function updateHud()
 {
 
   $("#reinforcements").text("Reinforcements Remaining: "+currentReinforcements);
-  $("#id").text("Waves Survived: "+score);
+  $("#score").text("Waves Survived: "+score);
 }
 
 function onNextRound(nextText, nextRound)
