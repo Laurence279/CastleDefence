@@ -35,10 +35,19 @@ var score = 0;
 
 var numberOfAttackers = 5;
 
+  var playOnce = 0;
+var sfxReinforce = new Audio('sounds/blue.mp3');
+var sfxDamaged = new Audio('sounds/red.mp3');
+var sfxDefended = new Audio('sounds/green.mp3');
+var sfxGameOver = new Audio('sounds/wrong.mp3');
+var sfxNextRound = new Audio('sounds/yellow.mp3');
+
+
 //Deploy Phase
 
 function deployRound()
 {
+        playAudio(sfxNextRound);
   $("#reinforcements").show();
   $("#nextRound").prop("disabled",false);
   numberOfAttackers = Math.floor(Math.random()*6+2);
@@ -86,6 +95,7 @@ function addReinforcements()
 {
 if(currentReinforcements > 0 && parseInt(this.textContent) < 5 && parseInt(this.textContent) > 0 )
 {
+  playAudio(sfxReinforce);
   var currentZoneValue = parseInt(this.textContent) + 1;
   this.textContent = currentZoneValue;
   currentReinforcements--;
@@ -96,14 +106,22 @@ if(currentReinforcements > 0 && parseInt(this.textContent) < 5 && parseInt(this.
 
 //Battle Phase
 
+
 function battlePhase()
 {
+
+  if(playOnce == 0)
+  {
+    playAudio(sfxNextRound);
+  }
+
 onNextRound("Battle Started", disableButtons())
 setTimeout(chooseAttackZone,500);
 }
 
 function chooseAttackZone()
 {
+playAudio(sfxNextRound);
 var randomNumber = Math.floor(Math.random()*8);
 attackedZones.push(randomNumber);
 var currentReinforcementsInZone = parseInt(buttonArray[randomNumber].textContent);
@@ -200,6 +218,7 @@ console.log(zone);
   console.log("Attackers: " + attackerScore + " Defenders: "+defenderScore);
 if (attackerScore > defenderScore)
 {
+  playAudio(sfxDamaged);
   if(attackerScore >= (defenderScore*3))
   {
       flashAttackedZone(buttonArray[zone],"coral");
@@ -212,6 +231,7 @@ if (attackerScore > defenderScore)
   }
   else
   {
+
     flashAttackedZone(buttonArray[zone],"lightcoral");
     buttonArray[zone].textContent = parseInt(buttonArray[zone].textContent) - 1;
     if(parseInt(buttonArray[zone].textContent) <= 0)
@@ -224,6 +244,7 @@ if (attackerScore > defenderScore)
 }
 else
 {
+  playAudio(sfxDefended);
   flashAttackedZone(buttonArray[zone],"lightgreen");
 }
 
@@ -232,12 +253,14 @@ else
 
 function damageCastle()
 {
+  playAudio(sfxDamaged);
   castleHealth -= Math.floor(Math.random()*20+1);
   $("#castleHealth").text("Keep Integrity: "+castleHealth+"%");
 }
 
 function endOfBattlePhase()
 {
+  playOnce = 0;
   score++;
   $("#score").text("Waves Survived: " + score);
   attackedZones = [];
@@ -259,8 +282,15 @@ function endOfBattlePhase()
 
 // Config
 
+function playAudio(audio)
+{
+  audio.volume = 0.2;
+  audio.play();
+}
+
 function gameOver()
 {
+  playAudio(sfxGameOver);
         $("#castleHealth").text("Castle Destroyed!");
         $("#nextRound").prop("disabled",false);
         $("#castle").animate({opacity:0.2});
@@ -270,6 +300,7 @@ function gameOver()
 
 function updateHud()
 {
+
   $("#reinforcements").text("Reinforcements Remaining: "+currentReinforcements);
 }
 
@@ -281,6 +312,7 @@ function onNextRound(nextText, nextRound)
 
 function Initialise()
 {
+
   onNextRound("Start",deployRound);
         $("#castle").prop("disabled",true);
 }
