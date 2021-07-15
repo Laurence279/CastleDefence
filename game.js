@@ -302,6 +302,7 @@ function updateHud()
 {
 
   $("#reinforcements").text("Reinforcements Remaining: "+currentReinforcements);
+  $("#id").text("Waves Survived: "+score);
 }
 
 function onNextRound(nextText, nextRound)
@@ -331,6 +332,7 @@ function refreshGame()
     $("#castle").animate({opacity:1});
   castleHealth = 100;
   score = 0;
+  $("#castleHealth").text("Keep Integrity: 100%");
   updateHud();
   currentReinforcements = 3;
   attackedZones = [];
